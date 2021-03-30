@@ -1,49 +1,74 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "react",
-      "react-hooks",
-      "eslint-plugin-import",
-      "prettier"
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "eslint-plugin-import",
+    "prettier"
+  ],
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "project": ["tsconfig.json"],
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/jsx-filename-extension": [
+      "off",
+      { "extensions": [".js", ".ts", ".tsx"] }
     ],
-    "env": {
-      "browser": true
-    },
-    "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:prettier/recommended"
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "indent": [
+      "error",
+      2,
+      { "ignoredNodes": ["ConditionalExpression"], "SwitchCase": 1 }
     ],
-    "parserOptions": {
-      "project": [
-        "tsconfig.json"
-      ],
-      "ecmaVersion": 2020,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "rules": {
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-unused-vars": "off",
-      "react/jsx-filename-extension": [
-        "warn",
-        {
-          "extensions": [
-            ".jsx",
-            ".tsx"
-          ]
-        }
-      ],
-      "react/prop-types": "off",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn"
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
+    "radix": "off",
+    "no-nested-ternary": "off",
+    "no-restricted-globals": "warn",
+    "no-underscore-dangle": ["error", { "allow": ["__typename"] }],
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "lines-between-class-members": "off",
+    "react/display-name": "off",
+    "react/forbid-prop-types": "error",
+    "react/require-render-return": "warn",
+    "react/default-props-match-prop-types": "error",
+    "react/no-deprecated": "error",
+    "react/no-unused-prop-types": "error",
+    "react/static-property-placement": "off",
+    "react/jsx-boolean-value": "warn",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-curly-brace-presence": [
+      "error",
+      { "props": "never", "children": "never" }
+    ],
+    "react/jsx-fragments": "off",
+    "react/jsx-handler-names": "warn",
+    "react/jsx-indent": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
   }
+}
