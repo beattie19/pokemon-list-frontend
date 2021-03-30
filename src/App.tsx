@@ -1,11 +1,11 @@
 import React from "react";
-import { Image } from "components/Image";
+import { Card } from "components/Card";
 
 const App = (): JSX.Element => {
   return (
     <>
       <h1>Pokemon List</h1>
-      <Image />
+      <Card />
     </>
   );
 };
