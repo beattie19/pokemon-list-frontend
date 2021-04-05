@@ -45,8 +45,11 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@types/redis": "^2.8.28",
+    "core-js": "^2.6.12",
     "css-modules-typescript-loader": "^4.0.1",
     "node-cli": "^0.2.3",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "redis": "^3.1.0"
