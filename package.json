@@ -7,7 +7,8 @@
     "start:dev": "webpack-cli serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",
     "lint": "eslint './src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "command:cache:pokemon": "webpack-cli serve --mode=development --env development --open --hot"
   },
   "keywords": [],
   "author": "",
@@ -45,8 +46,12 @@
   },
   "dependencies": {
     "css-modules-typescript-loader": "^4.0.1",
+    "node-cli": "^0.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "redis": "^3.1.0"
+  },
+  "bin": {
+    "pokemon": "./src/commands/cachePokemon.ts"
   }
 }
