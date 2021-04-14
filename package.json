@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-cli serve --mode=development --env development --open --hot",
+    "start:dev": "webpack-cli serve --mode=development --env development --open --hot --port=3000",
     "build": "webpack --mode=production --env production --progress",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
@@ -53,8 +53,5 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "redis": "^3.1.0"
-  },
-  "bin": {
-    "pokemon": "./src/commands/cachePokemon.ts"
   }
 }

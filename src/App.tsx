@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "components/Card";
-import redis from "redis";
 
+type Pokemon = {
+  name: string;
+  id: string;
+  sprite: string;
+};
 const App = (): JSX.Element => {
-  const redisClient = redis.createClient();
-  const pokeThree = redisClient.get("pokemon_3", function (err, reply) {
-    return JSON.parse(reply);
-  });
+  const [pokemon, setPokemon] = useState<Pokemon>();
+  fetch("http://127.0.0.1:8080/pokemon/cached/27")
+    .then((response) => response.json())
+    .then((data) =>
+      setPokemon({
+        name: data.name,
+        id: data.id,
+        sprite: data.sprites.front_default,
+      })
+    );
+
+  if (!pokemon) return null;
 
   return (
     <>
       <h1>Pokemon List</h1>
-      <Card pokemon={pokeThree.valueOf} />
+      <Card pokemon={pokemon} />
     </>
   );
 };
