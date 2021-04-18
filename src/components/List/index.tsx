@@ -1,0 +1,13 @@
+import { Card } from "components/Card";
+import React from "react";
+import { Pokemon } from "src/App";
+
+type ListProps = {
+  pokemons: Array<Pokemon>;
+};
+
+const List: React.FC<ListProps> = ({ pokemons }) => {
+  return pokemons.map((pokemon) => <Card key={pokemon.id} pokemon={pokemon} />);
+};
+
+export default List;
