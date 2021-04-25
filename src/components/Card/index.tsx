@@ -1,4 +1,7 @@
+import { BaseStats } from "components/BaseStats";
 import { Image } from "components/Image";
+import { Properties } from "components/Properties";
+import { Type } from "components/Type";
 import React from "react";
 import { Pokemon } from "src/App";
 import styles from "./styles.module.scss";
@@ -7,10 +10,18 @@ type CardProps = {
   pokemon: Pokemon;
 };
 
+const capitalise = (string: string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
+
 const Card: React.FC<CardProps> = ({ pokemon }) => (
   <div className={styles.cardBorder}>
+    <h3>{capitalise(pokemon.name)}</h3>
     <Image url={pokemon.sprite} />
-    <h3>{pokemon.name}</h3>
+    <Properties height={pokemon.height} weight={pokemon.weight} />
+    {pokemon.types.map((type) => (
+      <Type key={type} name={type} />
+    ))}
+    <BaseStats baseStats={pokemon.baseStats} />
   </div>
 );
 

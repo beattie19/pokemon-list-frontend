@@ -2,10 +2,23 @@ import React, { useEffect, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
 
+export type BaseStats = {
+  hp: number;
+  attack: number;
+  defence: number;
+  specialDefence: number;
+  specialAttack: number;
+  speed: number;
+};
+
 export type Pokemon = {
   name: string;
   id: string;
   sprite: string;
+  height: number;
+  weight: number;
+  types: string[];
+  baseStats: BaseStats;
 };
 
 const App = (): JSX.Element => {
