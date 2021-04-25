@@ -17,7 +17,8 @@
     "paths": {
       "components/*": ["src/components/*"]
     },
-    "outDir": "dist"
+    "outDir": "dist",
+    "skipLibCheck": true
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

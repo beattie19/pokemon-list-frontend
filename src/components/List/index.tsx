@@ -6,8 +6,12 @@ type ListProps = {
   pokemons: Array<Pokemon>;
 };
 
-const List: React.FC<ListProps> = ({ pokemons }) => {
-  return pokemons.map((pokemon) => <Card key={pokemon.id} pokemon={pokemon} />);
-};
+const List: React.FC<ListProps> = ({ pokemons }) => (
+  <>
+    {pokemons.map((pokemon) => (
+      <Card key={pokemon.id} pokemon={pokemon} />
+    ))}
+  </>
+);
 
 export default List;
