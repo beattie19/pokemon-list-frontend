@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Card } from "components/Card";
+import React, { useEffect, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
 
@@ -20,15 +19,16 @@ const App = (): JSX.Element => {
   //       sprite: data.sprites.front_default,
   //     })
   //   );
-
-  fetch("http://127.0.0.1:8080/pokemon/cached/all")
-    .then((response) => response.json())
-    .then((data) => setPokemons(data));
+  useEffect(() => {
+    fetch("http://127.0.0.1:8080/pokemon/cached/all")
+      .then((response) => response.json())
+      .then((data) => setPokemons(data));
+  }, []);
 
   if (!pokemons) return null;
 
   return (
-    <div class={styles.listContainer}>
+    <div className={styles.listContainer}>
       <List pokemons={pokemons} />
     </div>
   );
