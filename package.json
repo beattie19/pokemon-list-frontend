@@ -45,6 +45,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@sentry/react": "^6.3.5",
+    "@sentry/tracing": "^6.3.5",
     "@types/redis": "^2.8.28",
     "core-js": "^2.6.12",
     "css-modules-typescript-loader": "^4.0.1",
