@@ -12,7 +12,11 @@ const cssModulesTsLoader = {
   },
 };
 
-const webpackConfig = (env): Configuration => ({
+type EnvVariables = {
+  production: string;
+  development: string;
+};
+const webpackConfig = (env: EnvVariables): Configuration => ({
   entry: "./src/index.tsx",
   ...(env.production || !env.development ? {} : { devtool: "eval-source-map" }),
   resolve: {
