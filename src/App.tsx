@@ -24,20 +24,33 @@ export type Pokemon = {
 
 const App = (): JSX.Element => {
   const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
+  const [filteredPokemon, setFilteredPokemon] = useState<Array<Pokemon>>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     fetch("http://127.0.0.1:8080/pokemon/cached/all")
       .then((response) => response.json())
       .then((data) => setPokemons(data));
   }, []);
 
+  useEffect(() => {
+    const filteredPokemon = pokemons.filter((pokemon: Pokemon) =>
+      pokemon.name.includes(searchTerm)
+    );
+    setFilteredPokemon(filteredPokemon);
+  }, [pokemons, searchTerm]);
+
   if (!pokemons) return null;
 
   return (
     <>
       <h1>Pokemon List</h1>
-      <SearchBar />
+      <SearchBar
+        searchTerm={searchTerm}
+        handleSearchTermChange={setSearchTerm}
+      />
       <div className={styles.listContainer}>
-        <List pokemons={pokemons} />
+        <List pokemons={filteredPokemon} />
       </div>
     </>
   );

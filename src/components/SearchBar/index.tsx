@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-const SearchBar: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+type SearchBarProps = {
+  searchTerm: string;
+  handleSearchTermChange: (searchTerm: string) => void;
+};
 
-  const handleSearchTermChange = (inputSearchTerm: string) => {
-    setSearchTerm(inputSearchTerm);
-  };
-
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchTerm,
+  handleSearchTermChange,
+}) => {
   return (
     <input
       type="search"
