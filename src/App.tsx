@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
+import SearchBar from "components/SearchBar";
 
 export type BaseStats = {
   hp: number;
@@ -32,9 +33,13 @@ const App = (): JSX.Element => {
   if (!pokemons) return null;
 
   return (
-    <div className={styles.listContainer}>
-      <List pokemons={pokemons} />
-    </div>
+    <>
+      <h1>Pokemon List</h1>
+      <SearchBar />
+      <div className={styles.listContainer}>
+        <List pokemons={pokemons} />
+      </div>
+    </>
   );
 };
 
