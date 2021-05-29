@@ -14,13 +14,15 @@ const capitalise = (string: string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
 const Card: React.FC<CardProps> = ({ pokemon }) => (
-  <div className={styles.cardBorder}>
-    <h3>{capitalise(pokemon.name)}</h3>
-    <Image url={pokemon.sprite} />
+  <div className={`${styles.cardBorder}`}>
+    <div className={styles.title}>
+      <h3>{capitalise(pokemon.name)}</h3>
+      <Type types={pokemon.types} />
+    </div>
+    <div className={styles.pokemonImage}>
+      <Image url={pokemon.sprite} />
+    </div>
     <Properties height={pokemon.height} weight={pokemon.weight} />
-    {pokemon.types.map((type) => (
-      <Type key={type} name={type} />
-    ))}
     <BaseStats baseStats={pokemon.baseStats} />
   </div>
 );

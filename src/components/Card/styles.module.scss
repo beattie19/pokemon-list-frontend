@@ -1,5 +1,15 @@
 .cardBorder {
-  border: 5px rgb(170, 170, 13) solid;
+  border: 5px #eccb16 solid;
   border-radius: 5px;
   background-color: grey;
+}
+
+.pokemonImage {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  justify-content: space-evenly;
 }
