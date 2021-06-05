@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./styles.module.scss";
 
 type SearchBarProps = {
   searchTerm: string;
@@ -10,14 +11,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
   handleSearchTermChange,
 }) => {
   return (
-    <input
-      type="search"
-      name="searchBar"
-      id="searchBar"
-      placeholder="Search for pokemon"
-      onChange={({ target: { value } }) => handleSearchTermChange(value)}
-      value={searchTerm}
-    />
+    <div className={styles.searchBarContainer}>
+      <input
+        className={styles.searchBar}
+        type="search"
+        name="searchBar"
+        id="searchBar"
+        placeholder="Search for pokemon"
+        onChange={({ target: { value } }) => handleSearchTermChange(value)}
+        value={searchTerm}
+      />
+    </div>
   );
 };
 
