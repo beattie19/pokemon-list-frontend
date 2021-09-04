@@ -32,11 +32,20 @@ const App = (): JSX.Element => {
     undefined,
   ]);
 
+  const url =
+    "https://ymy7qb54pc.execute-api.ap-southeast-2.amazonaws.com/dev/pokemon";
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/pokemon/cached/all")
+    fetch(url)
       .then((response) => response.json())
-      .then((data) => setPokemons(data));
+      .then((data) => setPokemons(data.body));
   }, []);
+
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8080/pokemon/cached/all")
+  //     .then((response) => response.json())
+  //     .then((data) => setPokemons(data));
+  // }, []);
 
   useEffect(() => {
     const filteredPokemon = pokemons
@@ -60,6 +69,9 @@ const App = (): JSX.Element => {
         handleSearchTermChange={setSearchTerm}
       />
       <Filter weightFilter={weightFilter} setWeightFilter={setWeightFilter} />
+      <p>
+        Showing {filteredPokemon.length} of {pokemons.length}
+      </p>
       <div className={styles.listContainer}>
         <List pokemons={filteredPokemon} />
       </div>
