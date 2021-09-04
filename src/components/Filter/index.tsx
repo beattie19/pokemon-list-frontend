@@ -18,6 +18,8 @@ const Filter: React.FC<FilterProps> = ({ weightFilter, setWeightFilter }) => {
         type="number"
         name="min"
         id="weight-min"
+        min="0"
+        max="9999"
         value={weightFilter[0] || 0}
         onChange={({ target: { value } }) => {
           if (!value) {
@@ -30,6 +32,8 @@ const Filter: React.FC<FilterProps> = ({ weightFilter, setWeightFilter }) => {
         type="number"
         name="max"
         id="weight-max"
+        min="0"
+        max="9999"
         value={weightFilter[1] ?? 0}
         onChange={({ target: { value } }) => {
           if (!value) {

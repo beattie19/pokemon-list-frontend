@@ -27,10 +27,7 @@ const App = (): JSX.Element => {
   const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<Array<Pokemon>>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [weightFilter, setWeightFilter] = useState<[number, number]>([
-    undefined,
-    undefined,
-  ]);
+  const [weightFilter, setWeightFilter] = useState<[number, number]>([0, 9999]);
 
   const url =
     "https://ymy7qb54pc.execute-api.ap-southeast-2.amazonaws.com/dev/pokemon";
@@ -55,7 +52,8 @@ const App = (): JSX.Element => {
       .filter(
         (pokemon) =>
           pokemon.weight >= weightFilter[0] && pokemon.weight <= weightFilter[1]
-      );
+      )
+      .sort((a, b) => +a.id - +b.id);
     setFilteredPokemon(filteredPokemon);
   }, [pokemons, searchTerm, weightFilter]);
 
