@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { Pokemon } from "../../App";
 
 export type PropertiesProps = {
-  height: number;
-  weight: number;
+  height: Pokemon["height"];
+  weight: Pokemon["weight"];
 };
 
 const Properties: React.FC<PropertiesProps> = ({ height, weight }) => (

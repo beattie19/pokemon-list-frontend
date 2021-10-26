@@ -1,16 +1,8 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { Pokemon } from "../../App";
 
-export type BaseStatsProps = {
-  baseStats: {
-    hp: number;
-    attack: number;
-    defence: number;
-    specialDefence: number;
-    specialAttack: number;
-    speed: number;
-  };
-};
+type BaseStatsProps = Pick<Pokemon, "baseStats">;
 
 const BaseStats: React.FC<BaseStatsProps> = ({
   baseStats: { hp, attack, defence, specialAttack, specialDefence, speed },

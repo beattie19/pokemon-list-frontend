@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { Pokemon } from "../../App";
 
-const Image: React.FC<{ url: string }> = ({ url }) => {
-  return <img className={styles.pokemonImage} src={url}></img>;
+type ImageProps = {
+  url: Pokemon["sprite"];
 };
+const Image: React.FC<ImageProps> = ({ url }) => (
+  <img alt="pokemon image" className={styles.pokemonImage} src={url} />
+);
 
 export { Image };
