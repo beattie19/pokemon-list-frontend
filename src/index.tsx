@@ -5,8 +5,7 @@ import { Integrations } from "@sentry/tracing";
 import App from "./App";
 
 Sentry.init({
-  dsn:
-    "https://cf385b49f8b54cb3805fa0cf2f2d9b15@o605238.ingest.sentry.io/5744789",
+  dsn: "https://cf385b49f8b54cb3805fa0cf2f2d9b15@o605238.ingest.sentry.io/5744789",
   integrations: [new Integrations.BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
