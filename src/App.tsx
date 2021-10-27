@@ -3,6 +3,7 @@ import List from "components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "components/SearchBar";
 import Filter from "components/Filter";
+import { filterPokemon } from "./utils";
 
 export type BaseStats = {
   hp: number;
@@ -45,15 +46,7 @@ const App = (): JSX.Element => {
   // }, []);
 
   useEffect(() => {
-    const filteredPokemon = pokemons
-      .filter((pokemon: Pokemon) => {
-        return pokemon.name.includes(searchTerm);
-      })
-      .filter(
-        (pokemon) =>
-          pokemon.weight >= weightFilter[0] && pokemon.weight <= weightFilter[1]
-      )
-      .sort((a, b) => +a.id - +b.id);
+    const filteredPokemon = filterPokemon(pokemons, searchTerm, weightFilter);
     setFilteredPokemon(filteredPokemon);
   }, [pokemons, searchTerm, weightFilter]);
 
