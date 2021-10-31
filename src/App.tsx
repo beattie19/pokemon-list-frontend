@@ -30,8 +30,7 @@ const App = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState("");
   const [weightFilter, setWeightFilter] = useState<[number, number]>([0, 9999]);
 
-  const url =
-    "https://ymy7qb54pc.execute-api.ap-southeast-2.amazonaws.com/dev/pokemon";
+  const url = process.env.POKEMON_LIST;
 
   useEffect(() => {
     fetch(url)
