@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
+const Dotenv = require('dotenv-webpack');
 
 const cssModulesTsLoader = {
   loader: "css-modules-typescript-loader",
@@ -71,7 +72,7 @@ const webpackConfig = (env: EnvVariables): Configuration => ({
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.PRODUCTION": env.production || !env.development,
+      'process.env.NODE_ENV': JSON.stringify('development'),
       "process.env.NAME": JSON.stringify(require("./package.json").name),
       "process.env.VERSION": JSON.stringify(require("./package.json").version),
     }),
@@ -84,6 +85,7 @@ const webpackConfig = (env: EnvVariables): Configuration => ({
       filename: env.development ? "[name].css" : "[name].[hash].css",
       chunkFilename: env.development ? "[id].css" : "[id].[hash].css",
     }),
+    new Dotenv()
   ],
 });
 
