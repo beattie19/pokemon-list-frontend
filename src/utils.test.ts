@@ -14,5 +14,4 @@ test("sort pokemon ascending by id", () => {
   expect(result[0].id).toBe("1");
   expect(result[1].id).toBe("2");
   expect(result[2].id).toBe("3");
-
 });
