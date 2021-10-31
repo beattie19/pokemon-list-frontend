@@ -36,7 +36,7 @@ const App = (): JSX.Element => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setPokemons(data.body));
-  });
+  }, [url]);
 
   // useEffect(() => {
   //   fetch("http://127.0.0.1:8080/pokemon/cached/all")
