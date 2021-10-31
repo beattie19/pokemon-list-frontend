@@ -1,7 +1,24 @@
 import { Pokemon } from "./App";
 
+//create a mock builder class
 export const pokemonMock = (): Pokemon[] => {
   return [
+    {
+      id: "3",
+      name: "Venusaur",
+      weight: 1000,
+      height: 100,
+      sprite: "some+url.com",
+      types: ["type1", "type2"],
+      baseStats: {
+        attack: 30,
+        specialAttack: 30,
+        defence: 30,
+        specialDefence: 30,
+        speed: 30,
+        hp: 30,
+      },
+    },
     {
       id: "1",
       name: "Bulbasaur",
