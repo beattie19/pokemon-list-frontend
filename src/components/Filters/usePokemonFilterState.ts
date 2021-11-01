@@ -1,5 +1,8 @@
 import { Dispatch, useReducer } from "react";
 
+export const MIN_FILTER_VALUE = 0;
+export const MAX_FILTER_VALUE = 9999;
+
 export type FilterRange = [number, number];
 
 export type ValueFilters = {
@@ -16,9 +19,6 @@ export type ActionType = {
   type: FilterAction;
   payload: number;
 };
-
-const MIN_FILTER_VALUE = 0;
-const MAX_FILTER_VALUE = 9999;
 
 const init = (): ValueFilters => {
   return { weight: [MIN_FILTER_VALUE, MAX_FILTER_VALUE] };
