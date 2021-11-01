@@ -1,5 +1,9 @@
 import React, { Dispatch } from "react";
-import { ActionType, FilterAction, FilterRange, ValueFilters } from "../../App";
+import {
+  ActionType,
+  FilterAction,
+  ValueFilters,
+} from "components/Filter/usePokemonFilterState";
 
 type FilterProps = {
   filterState: ValueFilters;
