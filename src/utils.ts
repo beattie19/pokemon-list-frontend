@@ -1,4 +1,4 @@
-import { Pokemon } from "./App";
+import { FilterRange, Pokemon } from "./App";
 
 //allow currying so we can use the output directly into the next function
 const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) =>
@@ -6,7 +6,7 @@ const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) =>
     return pokemon.name.includes(searchTerm);
   });
 
-const filterByWeight = (pokemons: Pokemon[], weightFilter: [number, number]) =>
+const filterByWeight = (pokemons: Pokemon[], weightFilter: FilterRange) =>
   pokemons.filter(
     (pokemon) =>
       pokemon.weight >= weightFilter[0] && pokemon.weight <= weightFilter[1]
@@ -15,7 +15,7 @@ const filterByWeight = (pokemons: Pokemon[], weightFilter: [number, number]) =>
 export const filterPokemon = (
   pokemons: Pokemon[],
   searchTerm: string,
-  weightFilter: [number, number]
+  weightFilter: FilterRange
 ): Pokemon[] => {
   pokemons = filterBySearchTerm(pokemons, searchTerm);
   pokemons = filterByWeight(pokemons, weightFilter);

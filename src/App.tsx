@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "components/SearchBar";
@@ -24,11 +24,48 @@ export type Pokemon = {
   baseStats: BaseStats;
 };
 
+export type FilterRange = [number, number];
+
+export type ValueFilters = {
+  weight: FilterRange;
+};
+
+export enum FilterAction {
+  SetMaxWeight = "setMaxWeight",
+  SetMinWeight = "setMinWeight",
+  Reset = "reset",
+}
+
+export type ActionType = {
+  type: FilterAction;
+  payload: number;
+};
+
+const MIN_FILTER_VALUE = 0;
+const MAX_FILTER_VALUE = 9999;
+
+const init = (): ValueFilters => {
+  return { weight: [MIN_FILTER_VALUE, MAX_FILTER_VALUE] };
+};
+
+const reducer = (state: ValueFilters, action: ActionType): ValueFilters => {
+  switch (action.type) {
+    case FilterAction.SetMaxWeight:
+      return { ...state, weight: [state.weight[0], action.payload] };
+    case FilterAction.SetMinWeight:
+      return { ...state, weight: [action.payload, state.weight[1]] };
+    case FilterAction.Reset:
+      return init();
+    default:
+      throw new Error();
+  }
+};
+
 const App = (): JSX.Element => {
   const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<Array<Pokemon>>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [weightFilter, setWeightFilter] = useState<[number, number]>([0, 9999]);
+  const [state, dispatch] = useReducer(reducer, init());
 
   const url = process.env.POKEMON_LIST;
 
@@ -45,9 +82,9 @@ const App = (): JSX.Element => {
   // }, []);
 
   useEffect(() => {
-    const filteredPokemon = filterPokemon(pokemons, searchTerm, weightFilter);
+    const filteredPokemon = filterPokemon(pokemons, searchTerm, state.weight);
     setFilteredPokemon(filteredPokemon);
-  }, [pokemons, searchTerm, weightFilter]);
+  }, [pokemons, searchTerm, state]);
 
   if (!pokemons) return null;
 
@@ -58,7 +95,7 @@ const App = (): JSX.Element => {
         searchTerm={searchTerm}
         handleSearchTermChange={setSearchTerm}
       />
-      <Filter weightFilter={weightFilter} setWeightFilter={setWeightFilter} />
+      <Filter filterState={state} dispatch={dispatch} />
       <p>
         Showing {filteredPokemon.length} of {pokemons.length}
       </p>
