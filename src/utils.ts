@@ -1,4 +1,5 @@
-import { FilterRange, Pokemon } from "./App";
+import { Pokemon } from "./App";
+import { FilterRange } from "components/Filter/usePokemonFilterState";
 
 //allow currying so we can use the output directly into the next function
 const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) =>
