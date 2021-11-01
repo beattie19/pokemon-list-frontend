@@ -2,9 +2,10 @@ import React, { useEffect, useReducer, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "components/SearchBar";
-import Filter from "components/Filter";
+import Filter from "components/Filters";
 import { filterPokemon } from "./utils";
-import usePokemonFilterState from "components/Filter/usePokemonFilterState";
+import usePokemonFilterState from "components/Filters/usePokemonFilterState";
+import Filters from "components/Filters";
 
 export type BaseStats = {
   hp: number;
@@ -59,7 +60,7 @@ const App = (): JSX.Element => {
         searchTerm={searchTerm}
         handleSearchTermChange={setSearchTerm}
       />
-      <Filter filterState={state} dispatch={dispatch} />
+      <Filters filterState={state} dispatch={dispatch} />
       <p>
         Showing {filteredPokemon.length} of {pokemons.length}
       </p>
