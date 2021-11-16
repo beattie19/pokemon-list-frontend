@@ -6,25 +6,25 @@ import {
 } from "components/Filters/usePokemonFilterState";
 import BaseFilter from "components/Filters/BaseFilter";
 
-type WeightFilterProps = {
+type HeightgFilterProps = {
   filterState: FilterRange;
   dispatch: Dispatch<ActionType>;
 };
 
-const WeightFilter: React.FC<WeightFilterProps> = ({
+const HeightFilter: React.FC<HeightgFilterProps> = ({
   filterState,
   dispatch,
 }) => (
   <>
-    <p>Weight</p>
+    <p>Height</p>
     <BaseFilter
-      name="weight"
+      name="height"
       filterState={filterState}
       dispatch={dispatch}
-      filterMinAction={FilterAction.SetMinWeight}
-      filterMaxAction={FilterAction.SetMaxWeight}
+      filterMinAction={FilterAction.SetMinHeight}
+      filterMaxAction={FilterAction.SetMaxHeight}
     />
   </>
 );
 
-export { WeightFilter };
+export { HeightFilter };

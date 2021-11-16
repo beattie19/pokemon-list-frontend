@@ -47,7 +47,12 @@ const App = (): JSX.Element => {
   // }, []);
 
   useEffect(() => {
-    const filteredPokemon = filterPokemon(pokemons, searchTerm, state.weight);
+    const filteredPokemon = filterPokemon(
+      pokemons,
+      searchTerm,
+      state.weight,
+      state.height
+    );
     setFilteredPokemon(filteredPokemon);
   }, [pokemons, searchTerm, state]);
 
