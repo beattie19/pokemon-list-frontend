@@ -8,7 +8,8 @@ export const pokemonMock = (): Pokemon[] => {
       name: "Venusaur",
       weight: 1000,
       height: 100,
-      sprite: "some+url.com",
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
       types: ["type1", "type2"],
       baseStats: {
         attack: 30,
@@ -24,7 +25,8 @@ export const pokemonMock = (): Pokemon[] => {
       name: "Bulbasaur",
       weight: 100,
       height: 10,
-      sprite: "some+url.com",
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
       types: ["type1", "type2"],
       baseStats: {
         attack: 10,
@@ -40,7 +42,8 @@ export const pokemonMock = (): Pokemon[] => {
       name: "Ivysaur",
       weight: 200,
       height: 20,
-      sprite: "some+url.com",
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
       types: ["type1", "type2"],
       baseStats: {
         attack: 20,

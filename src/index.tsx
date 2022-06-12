@@ -4,7 +4,8 @@ import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import App from "./App";
 
-if (process.env.SENTRY_ENABLED) {
+if (!process.env.SENTRY_ENABLED) {
+  console.log(process.env.SENTRY_ENABLED);
   Sentry.init({
     dsn: process.env.SENTRY_URL,
     integrations: [new Integrations.BrowserTracing()],

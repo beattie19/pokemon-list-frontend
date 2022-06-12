@@ -2,10 +2,10 @@ import React, { useEffect, useReducer, useState } from "react";
 import List from "components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "components/SearchBar";
-import Filter from "components/Filters";
 import { filterPokemon } from "./utils";
 import usePokemonFilterState from "components/Filters/usePokemonFilterState";
 import Filters from "components/Filters";
+import { pokemonMock } from "./pokemonMock";
 
 export type BaseStats = {
   hp: number;
@@ -35,9 +35,13 @@ const App = (): JSX.Element => {
   const url = process.env.POKEMON_LIST;
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setPokemons(data.body));
+    if (process.env.POKEMON_LIST === "mock") {
+      setPokemons(pokemonMock());
+    } else {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => setPokemons(data.body));
+    }
   }, [url]);
 
   // useEffect(() => {
@@ -57,7 +61,6 @@ const App = (): JSX.Element => {
   }, [pokemons, searchTerm, state]);
 
   if (!pokemons) return null;
-
   return (
     <>
       <h1>Pokemon List</h1>
