@@ -9,6 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "allowJs": true,
+    "types": ["node", "jest"],
     "baseUrl": "./",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -20,8 +21,9 @@
     "outDir": "dist",
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "webpack.config.js"],
+  "include": ["src/*.ts", "src/*.tsx", "webpack.config.js"],
   "exclude": [
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "cypress/**",
   ]
 }
