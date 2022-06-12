@@ -1,23 +1,11 @@
 const { pokemonMock } = require("../../src/pokemonMock");
 
 describe('The Home Page', () => {
-    it('successfully loads', () => {
-
-        cy.intercept(
-            'GET',
-            'https://fklqabeg8h.execute-api.ap-southeast-2.amazonaws.com/test/all-pokemon',
-            {
-              statusCode: 200,
-              body: {
-                message: 'Request successful',
-                result: ['my-data']
-              }
-            }
-          )
-          .as('typicode')
-
-    //   cy.intercept('GET', 'https://fklqabeg8h.execute-api.ap-southeast-2.amazonaws.com/test/all-pokemon', []).as('pokemons');
+    it('Search for pokemon', () => {
       cy.visit('http://localhost:3000')
-      cy.get('input[name=searchBar]').type('Charizard')
+      cy.get('#displayPokemonCount').should('have.text', 'Showing 3 of 3')
+      cy.get('input[name=searchBar]').type('Bulba')
+      cy.get('#displayPokemonCount').should('have.text', 'Showing 1 of 3')
+      cy.get('h3').should('have.text', 'Bulbasaur')
     })
   })

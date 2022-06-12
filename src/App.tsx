@@ -69,7 +69,7 @@ const App = (): JSX.Element => {
         handleSearchTermChange={setSearchTerm}
       />
       <Filters filterState={state} dispatch={dispatch} />
-      <p>
+      <p id="displayPokemonCount">
         Showing {filteredPokemon.length} of {pokemons.length}
       </p>
       <div className={styles.listContainer}>
