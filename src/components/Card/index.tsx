@@ -1,9 +1,9 @@
-import { BaseStats } from "components/BaseStats";
-import { Image } from "components/Image";
-import { Properties } from "components/Properties";
-import { Type } from "components/Type";
+import { BaseStats } from "../../components/BaseStats";
+import { Image } from "../../components/Image";
+import { Properties } from "../../components/Properties";
+import { Type } from "../../components/Type";
 import React from "react";
-import { Pokemon } from "src/App";
+import { Pokemon } from "../../App";
 import styles from "./styles.module.scss";
 
 type CardProps = {
