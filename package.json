@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "check-types": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "start:dev": "webpack-cli serve --mode=development --env development --open --hot --port=3000",

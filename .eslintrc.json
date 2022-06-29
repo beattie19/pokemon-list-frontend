@@ -68,7 +68,8 @@
     "react/jsx-handler-names": "warn",
     "react/jsx-indent": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-props-no-spreading": "warn"
+    "react/jsx-props-no-spreading": "warn",
+    "@typescript-eslint/no-explicit-any": "error"
   },
   "settings": {
     "react": {
