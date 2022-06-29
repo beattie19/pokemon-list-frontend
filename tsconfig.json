@@ -24,8 +24,10 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "webpack.config.js",
-    "./jest-setup.ts"
+    "./webpack.config.ts",
+    "./setup-jest.ts",
+    "./jest-setup.ts",
+    "./cypress.config.ts"
   ],
   "exclude": ["cypress/**"]
 }
