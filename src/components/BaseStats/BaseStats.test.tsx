@@ -27,7 +27,6 @@ describe("<BaseStats /", () => {
 
     expect(statListItems.length).toEqual(expectedStatNamesInOrder.length);
     statListItems.map((stat, index) => {
-      console.log(expectedStatNamesInOrder[index]);
       expect(stat).toHaveTextContent(
         new RegExp(expectedStatNamesInOrder[index], "i")
       );
