@@ -1,10 +1,10 @@
-import React, { useEffect, useReducer, useState } from "react";
-import List from "components/List";
+import React, { useEffect, useState } from "react";
+import List from "./components/List";
 import styles from "./styles.module.scss";
-import SearchBar from "components/SearchBar";
+import SearchBar from "./components/SearchBar";
 import { filterPokemon } from "./utils";
-import usePokemonFilterState from "components/Filters/usePokemonFilterState";
-import Filters from "components/Filters";
+import usePokemonFilterState from "./components/Filters/usePokemonFilterState";
+import Filters from "./components/Filters";
 import { pokemonMock } from "./pokemonMock";
 
 export type BaseStats = {

@@ -1,7 +1,13 @@
 import { filterPokemon } from "./utils";
 import { pokemonMock } from "./pokemonMock";
 
-test("filter by name", () => {
+test("filter by name matching case", () => {
+  expect(filterPokemon(pokemonMock(), "Ivy", [0, 9999], [0, 9999]).length).toBe(
+    1
+  );
+});
+
+test("filter by name without matching case", () => {
   expect(filterPokemon(pokemonMock(), "Ivy", [0, 9999], [0, 9999]).length).toBe(
     1
   );

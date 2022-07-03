@@ -1,10 +1,7 @@
 import React, { Dispatch } from "react";
-import {
-  ActionType,
-  ValueFilters,
-} from "components/Filters/usePokemonFilterState";
-import { WeightFilter } from "components/Filters/WeightFilter";
-import { HeightFilter } from "components/Filters/HeightFilter";
+import { ActionType, ValueFilters } from "./usePokemonFilterState";
+import { WeightFilter } from "./WeightFilter";
+import { HeightFilter } from "./HeightFilter";
 
 type FilterProps = {
   filterState: ValueFilters;

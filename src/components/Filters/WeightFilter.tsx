@@ -3,8 +3,8 @@ import {
   ActionType,
   FilterAction,
   FilterRange,
-} from "components/Filters/usePokemonFilterState";
-import BaseFilter from "components/Filters/BaseFilter";
+} from "../Filters/usePokemonFilterState";
+import BaseFilter from "../Filters/BaseFilter";
 
 type WeightFilterProps = {
   filterState: FilterRange;

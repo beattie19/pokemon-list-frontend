@@ -5,7 +5,7 @@ import {
   FilterRange,
   FilterAction,
   ActionType,
-} from "components/Filters/usePokemonFilterState";
+} from "../Filters/usePokemonFilterState";
 
 type FilterProps = {
   name: string;
@@ -44,6 +44,7 @@ const BaseFilter: React.FC<FilterProps> = ({
     <div>
       <input
         type="number"
+        data-testid={`${name}-min`}
         name={`${name}-min`}
         id={`${name}-min`}
         min={MIN_FILTER_VALUE}
@@ -53,6 +54,7 @@ const BaseFilter: React.FC<FilterProps> = ({
       />
       <input
         type="number"
+        data-testid={`${name}-max`}
         name={`${name}-max`}
         id={`${name}-max`}
         min={MIN_FILTER_VALUE}
