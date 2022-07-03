@@ -5,7 +5,7 @@ import {
   FilterRange,
   FilterAction,
   ActionType,
-} from "components/Filters/usePokemonFilterState";
+} from "../Filters/usePokemonFilterState";
 
 type FilterProps = {
   name: string;
