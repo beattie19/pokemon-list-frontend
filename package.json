@@ -1,7 +1,11 @@
 {
   "name": "pokemon",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pokemon filterable list",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/beattie19/pokemon-list-frontend.git"
+  },
   "main": "index.js",
   "scripts": {
     "check-types": "tsc --noEmit",
@@ -53,19 +57,19 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "mini-css-extract-plugin": "^1.4.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.1",
     "prettier": "^2.2.1",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "ts-jest": "^27.1.5",
     "ts-loader": "^8.0.18",
-    "ts-node": "^10.8.1",
+    "ts-node": "^10.8.2",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.4.0",
     "webpack": "^5.28.0",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
     "@sentry/react": "^6.3.5",
