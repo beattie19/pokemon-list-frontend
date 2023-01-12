@@ -55,7 +55,8 @@ const App = (): JSX.Element => {
       pokemons,
       searchTerm,
       state.weight,
-      state.height
+      state.height,
+      state.attack
     );
     setFilteredPokemon(filteredPokemon);
   }, [pokemons, searchTerm, state]);

@@ -8,6 +8,7 @@ export type FilterRange = [number, number];
 export type ValueFilters = {
   weight: FilterRange;
   height: FilterRange;
+  attack: FilterRange;
 };
 
 export enum FilterAction {
@@ -15,6 +16,8 @@ export enum FilterAction {
   SetMinWeight = "setMinWeight",
   SetMinHeight = "setMinHeight",
   SetMaxHeight = "setMaxHeight",
+  SetMinAttack = "setMinAttack",
+  SetMaxAttack = "setMaxAttack",
   Reset = "reset",
 }
 
@@ -27,6 +30,7 @@ const init = (): ValueFilters => {
   return {
     weight: [MIN_FILTER_VALUE, MAX_FILTER_VALUE],
     height: [MIN_FILTER_VALUE, MAX_FILTER_VALUE],
+    attack: [MIN_FILTER_VALUE, MAX_FILTER_VALUE],
   };
 };
 
@@ -40,6 +44,10 @@ const reducer = (state: ValueFilters, action: ActionType): ValueFilters => {
       return { ...state, height: [state.height[0], action.payload] };
     case FilterAction.SetMinHeight:
       return { ...state, height: [action.payload, state.height[1]] };
+    case FilterAction.SetMaxAttack:
+      return { ...state, attack: [state.attack[0], action.payload] };
+    case FilterAction.SetMinAttack:
+      return { ...state, attack: [action.payload, state.attack[1]] };
     case FilterAction.Reset:
       return init();
     default:
