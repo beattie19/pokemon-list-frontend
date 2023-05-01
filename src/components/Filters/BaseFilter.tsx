@@ -15,6 +15,9 @@ type FilterProps = {
   filterMaxAction: FilterAction;
 };
 
+const getIntOrEmptyString = (value: number) =>
+  Number.isInteger(value) ? value : "";
+
 const BaseFilter: React.FC<FilterProps> = ({
   name,
   filterState,
@@ -49,7 +52,7 @@ const BaseFilter: React.FC<FilterProps> = ({
         id={`${name}-min`}
         min={MIN_FILTER_VALUE}
         max={MAX_FILTER_VALUE}
-        value={filterState[0]}
+        value={getIntOrEmptyString(filterState[0])}
         onChange={handleChangeMin}
       />
       <input
@@ -59,7 +62,7 @@ const BaseFilter: React.FC<FilterProps> = ({
         id={`${name}-max`}
         min={MIN_FILTER_VALUE}
         max={MAX_FILTER_VALUE}
-        value={filterState[1]}
+        value={getIntOrEmptyString(filterState[1])}
         onChange={handleChangeMax}
       />
     </div>

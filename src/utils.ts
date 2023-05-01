@@ -21,14 +21,23 @@ const filterByHeight = (pokemons: Pokemon[], heightFilter: FilterRange) =>
       pokemon.height >= heightFilter[0] && pokemon.height <= heightFilter[1]
   );
 
+const filterByAttack = (pokemons: Pokemon[], attackFilter: FilterRange) =>
+  pokemons.filter(
+    (pokemon) =>
+      pokemon.baseStats.attack >= attackFilter[0] &&
+      pokemon.baseStats.attack <= attackFilter[1]
+  );
+
 export const filterPokemon = (
   pokemons: Pokemon[],
   searchTerm: string,
   weightFilter: FilterRange,
-  heightFilter: FilterRange
+  heightFilter: FilterRange,
+  attackFilter: FilterRange
 ): Pokemon[] => {
   pokemons = filterBySearchTerm(pokemons, searchTerm);
   pokemons = filterByWeight(pokemons, weightFilter);
   pokemons = filterByHeight(pokemons, heightFilter);
+  pokemons = filterByAttack(pokemons, attackFilter);
   return pokemons.sort((a, b) => +a.id - +b.id);
 };
