@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import List from "./components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "./components/SearchBar";
@@ -6,6 +6,7 @@ import { filterPokemon } from "./utils";
 import usePokemonFilterState from "./components/Filters/usePokemonFilterState";
 import Filters from "./components/Filters";
 import { pokemonMock } from "./pokemonMock";
+import { debounce } from "lodash";
 
 export type BaseStats = {
   hp: number;
@@ -28,21 +29,24 @@ export type Pokemon = {
 
 const App = (): JSX.Element => {
   const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
-  const [filteredPokemon, setFilteredPokemon] = useState<Array<Pokemon>>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [state, dispatch] = usePokemonFilterState();
 
   const url = process.env.POKEMON_LIST;
 
+  const initialPokemonList = useCallback(() => pokemonMock(), []);
+
   useEffect(() => {
     if (process.env.POKEMON_LIST === "mock") {
-      setPokemons(pokemonMock());
+      setPokemons(initialPokemonList());
     } else {
       fetch(url)
         .then((response) => response.json())
-        .then((data) => setPokemons(data.body));
+        .then((data) => {
+          setPokemons(data.body);
+        });
     }
-  }, [url]);
+  }, [url, initialPokemonList]);
 
   // useEffect(() => {
   //   fetch("http://127.0.0.1:8080/pokemon/cached/all")
@@ -50,18 +54,19 @@ const App = (): JSX.Element => {
   //     .then((data) => setPokemons(data));
   // }, []);
 
-  useEffect(() => {
-    const filteredPokemon = filterPokemon(
-      pokemons,
-      searchTerm,
-      state.weight,
-      state.height,
-      state.attack
-    );
-    setFilteredPokemon(filteredPokemon);
-  }, [pokemons, searchTerm, state]);
+  // useEffect(() => {
 
+  // }, [pokemons, searchTerm, state]);
+
+  console.log("rendered");
   if (!pokemons) return null;
+
+  const filteredPokemon = filterPokemon(
+    initialPokemonList(),
+    searchTerm,
+    state
+  );
+    setFilteredPokemon(filteredPokemon);
   return (
     <>
       <h1>Pokemon List</h1>
