@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import List from "./components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import { useGetPokemon } from "./hooks/useGetPokemon";
+import { debounce } from "lodash";
 
 const App = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { dispatch, filterPokemonForSearchTerm, filters, pokemons } =
-    useGetPokemon();
+  const {
+    dispatch,
+    updateFilteredPokemonForSearchTerm,
+    filters,
+    pokemons,
+    filteredPokemon,
+  } = useGetPokemon();
 
-  const filteredPokemons = filterPokemonForSearchTerm(searchTerm);
+  const handleFilteringPokemon = (searchTerm: string) =>
+    updateFilteredPokemonForSearchTerm(searchTerm);
+
+  const filterPokemonRef = React.useRef(handleFilteringPokemon);
+
+  useEffect(() => {
+    filterPokemonRef.current = handleFilteringPokemon;
+  });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedFilterPokemon = useCallback(
+    debounce((searchTerm: string) => filterPokemonRef.current(searchTerm), 500),
+    []
+  );
 
   const handleSearchTermChange = (searchTerm: string) => {
     console.log("searchTerm", searchTerm);
     setSearchTerm(searchTerm);
+    debouncedFilterPokemon(searchTerm);
   };
 
+  console.log("rendered");
   if (!pokemons) return null;
 
   return (
@@ -28,10 +49,10 @@ const App = (): JSX.Element => {
       />
       <Filters filterState={filters} dispatch={dispatch} />
       <p id="displayPokemonCount">
-        Showing {filteredPokemons.length} of {pokemons.length}
+        Showing {filteredPokemon.length} of {pokemons.length}
       </p>
       <div className={styles.listContainer}>
-        <List pokemons={filteredPokemons} />
+        <List pokemons={filteredPokemon} />
       </div>
     </>
   );
