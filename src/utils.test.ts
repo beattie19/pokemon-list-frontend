@@ -11,6 +11,16 @@ test("filter by name matching case", () => {
   ).toBe(1);
 });
 
+test("filter empty string for name", () => {
+  expect(
+    filterPokemon(pokemonMock(), "", {
+      weight: [0, 9999],
+      height: [0, 9999],
+      attack: [0, 9999],
+    }).length
+  ).toBe(3);
+});
+
 test("filter by name without matching case", () => {
   expect(
     filterPokemon(pokemonMock(), "Ivy", {
