@@ -5,34 +5,16 @@ import SearchBar from "./components/SearchBar";
 import { filterPokemon } from "./utils";
 import usePokemonFilterState from "./components/Filters/usePokemonFilterState";
 import Filters from "./components/Filters";
-import { pokemonMock } from "./pokemonMock";
 import { debounce } from "lodash";
-
-export type BaseStats = {
-  hp: number;
-  attack: number;
-  defence: number;
-  specialDefence: number;
-  specialAttack: number;
-  speed: number;
-};
-
-export type Pokemon = {
-  name: string;
-  id: string;
-  sprite: string;
-  height: number;
-  weight: number;
-  types: string[];
-  baseStats: BaseStats;
-};
+import { useGetPokemon } from "./hooks/useGetPokemon";
+import { Pokemon } from "./types/types";
 
 const App = (): JSX.Element => {
-  const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [state, dispatch] = usePokemonFilterState();
+  const pokemons = useGetPokemon();
 
-  const url = process.env.POKEMON_LIST;
+  const filteredPokemonDebounce = debounce(
 
   const initialPokemonList = useCallback(() => pokemonMock(), []);
 

@@ -1,4 +1,4 @@
-import { Pokemon } from "./App";
+import { Pokemon } from "./types/types";
 import {
   FilterRange,
   ValueFilters,

@@ -1,6 +1,6 @@
 import { Card } from "../Card";
 import React from "react";
-import { Pokemon } from "src/App";
+import { Pokemon } from "src/types/types";
 
 type ListProps = {
   pokemons: Array<Pokemon>;

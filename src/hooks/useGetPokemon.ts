@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Pokemon } from "src/App";
+import { Pokemon } from "src/types/types";
 import { pokemonMock } from "src/pokemonMock";
 
 export const useGetPokemon = (): Pokemon[] => {

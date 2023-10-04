@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { Pokemon } from "../../App";
+import { Pokemon } from "src/types/types";
 
 export type PropertiesProps = {
   height: Pokemon["height"];
