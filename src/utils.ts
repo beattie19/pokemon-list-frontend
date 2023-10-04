@@ -5,12 +5,15 @@ import {
 } from "./components/Filters/usePokemonFilterState";
 
 //allow currying so we can use the output directly into the next function
-const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) =>
-  pokemons.filter((pokemon: Pokemon) => {
+const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) => {
+  if (!searchTerm) return pokemons;
+
+  return pokemons.filter((pokemon: Pokemon) => {
     return pokemon.name
       .toLocaleLowerCase()
       .includes(searchTerm.toLocaleLowerCase());
   });
+};
 
 const filterByWeight = (pokemons: Pokemon[], weightFilter: FilterRange) =>
   pokemons.filter(
