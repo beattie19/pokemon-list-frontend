@@ -1,75 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import List from "./components/List";
 import styles from "./styles.module.scss";
 import SearchBar from "./components/SearchBar";
-import { filterPokemon } from "./utils";
-import usePokemonFilterState from "./components/Filters/usePokemonFilterState";
 import Filters from "./components/Filters";
-import { pokemonMock } from "./pokemonMock";
-
-export type BaseStats = {
-  hp: number;
-  attack: number;
-  defence: number;
-  specialDefence: number;
-  specialAttack: number;
-  speed: number;
-};
-
-export type Pokemon = {
-  name: string;
-  id: string;
-  sprite: string;
-  height: number;
-  weight: number;
-  types: string[];
-  baseStats: BaseStats;
-};
+import { useGetPokemon } from "./hooks/useGetPokemon";
+import { debounce } from "lodash";
 
 const App = (): JSX.Element => {
-  const [pokemons, setPokemons] = useState<Array<Pokemon>>([]);
-  const [filteredPokemon, setFilteredPokemon] = useState<Array<Pokemon>>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [state, dispatch] = usePokemonFilterState();
+  const {
+    dispatch,
+    updateFilteredPokemonForSearchTerm,
+    filters,
+    pokemons,
+    filteredPokemon,
+  } = useGetPokemon();
 
-  const url = process.env.POKEMON_LIST;
+  const handleFilteringPokemon = (searchTerm: string) =>
+    updateFilteredPokemonForSearchTerm(searchTerm);
+
+  const filterPokemonRef = React.useRef(handleFilteringPokemon);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedFilterPokemon = useCallback(
+    debounce((searchTerm: string) => filterPokemonRef.current(searchTerm), 500),
+    []
+  );
 
   useEffect(() => {
-    if (process.env.POKEMON_LIST === "mock") {
-      setPokemons(pokemonMock());
-    } else {
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => setPokemons(data.body));
-    }
-  }, [url]);
-
-  // useEffect(() => {
-  //   fetch("http://127.0.0.1:8080/pokemon/cached/all")
-  //     .then((response) => response.json())
-  //     .then((data) => setPokemons(data));
-  // }, []);
+    filterPokemonRef.current = handleFilteringPokemon;
+  });
 
   useEffect(() => {
-    const filteredPokemon = filterPokemon(
-      pokemons,
-      searchTerm,
-      state.weight,
-      state.height,
-      state.attack
-    );
-    setFilteredPokemon(filteredPokemon);
-  }, [pokemons, searchTerm, state]);
+    debouncedFilterPokemon(searchTerm);
+
+    return () => {
+      debouncedFilterPokemon.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, searchTerm]);
+
+  const handleSearchTermChange = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+    debouncedFilterPokemon(searchTerm);
+  };
 
   if (!pokemons) return null;
+
   return (
     <>
       <h1>Pokemon List</h1>
       <SearchBar
         searchTerm={searchTerm}
-        handleSearchTermChange={setSearchTerm}
+        handleSearchTermChange={handleSearchTermChange}
       />
-      <Filters filterState={state} dispatch={dispatch} />
+      <Filters filterState={filters} dispatch={dispatch} />
       <p id="displayPokemonCount">
         Showing {filteredPokemon.length} of {pokemons.length}
       </p>

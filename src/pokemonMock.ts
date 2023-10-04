@@ -1,4 +1,4 @@
-import { Pokemon } from "./App";
+import { Pokemon } from "./types/types";
 
 //create a mock builder class
 export const pokemonMock = (): Pokemon[] => {

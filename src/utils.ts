@@ -1,13 +1,19 @@
-import { Pokemon } from "./App";
-import { FilterRange } from "./components/Filters/usePokemonFilterState";
+import { Pokemon } from "./types/types";
+import {
+  FilterRange,
+  ValueFilters,
+} from "./components/Filters/usePokemonFilterState";
 
 //allow currying so we can use the output directly into the next function
-const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) =>
-  pokemons.filter((pokemon: Pokemon) => {
+const filterBySearchTerm = (pokemons: Pokemon[], searchTerm: string) => {
+  if (!searchTerm) return pokemons;
+
+  return pokemons.filter((pokemon: Pokemon) => {
     return pokemon.name
       .toLocaleLowerCase()
       .includes(searchTerm.toLocaleLowerCase());
   });
+};
 
 const filterByWeight = (pokemons: Pokemon[], weightFilter: FilterRange) =>
   pokemons.filter(
@@ -31,13 +37,19 @@ const filterByAttack = (pokemons: Pokemon[], attackFilter: FilterRange) =>
 export const filterPokemon = (
   pokemons: Pokemon[],
   searchTerm: string,
-  weightFilter: FilterRange,
-  heightFilter: FilterRange,
-  attackFilter: FilterRange
+  { weight, height, attack }: ValueFilters
 ): Pokemon[] => {
   pokemons = filterBySearchTerm(pokemons, searchTerm);
-  pokemons = filterByWeight(pokemons, weightFilter);
-  pokemons = filterByHeight(pokemons, heightFilter);
-  pokemons = filterByAttack(pokemons, attackFilter);
+  pokemons = filterByWeight(pokemons, weight);
+  pokemons = filterByHeight(pokemons, height);
+  pokemons = filterByAttack(pokemons, attack);
+  return pokemons.sort((a, b) => +a.id - +b.id);
+};
+
+export const defaultFilterPokemon = (pokemons: Pokemon[]): Pokemon[] => {
+  pokemons = filterBySearchTerm(pokemons, "");
+  pokemons = filterByWeight(pokemons, [0, 9999]);
+  pokemons = filterByHeight(pokemons, [0, 9999]);
+  pokemons = filterByAttack(pokemons, [0, 9999]);
   return pokemons.sort((a, b) => +a.id - +b.id);
 };

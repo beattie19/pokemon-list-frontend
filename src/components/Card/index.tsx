@@ -3,7 +3,7 @@ import { Image } from "../../components/Image";
 import { Properties } from "../../components/Properties";
 import { Type } from "../../components/Type";
 import React from "react";
-import { Pokemon } from "../../App";
+import { Pokemon } from "src/types/types";
 import styles from "./styles.module.scss";
 
 type CardProps = {
