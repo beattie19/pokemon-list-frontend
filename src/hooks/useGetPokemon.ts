@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { Pokemon } from "src/types/types";
-import { pokemonMock } from "src/pokemonMock";
-import { filterPokemon } from "src/utils";
+import { pokemonMock } from "../pokemonMock";
+import { defaultFilterPokemon, filterPokemon } from "../utils";
 import usePokemonFilterState, {
   ActionType,
   ValueFilters,
-} from "components/Filters/usePokemonFilterState";
-import { set } from "cypress/types/lodash";
+} from "../components/Filters/usePokemonFilterState";
 
 export const useGetPokemon = (): {
   filters: ValueFilters;
@@ -25,7 +24,7 @@ export const useGetPokemon = (): {
   useEffect(() => {
     if (process.env.POKEMON_LIST === "mock") {
       setPokemons(initialPokemonList());
-      setFilteredPokemon(initialPokemonList());
+      setFilteredPokemon(defaultFilterPokemon(initialPokemonList()));
     } else {
       fetch(url)
         .then((response) => response.json())

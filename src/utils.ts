@@ -45,3 +45,11 @@ export const filterPokemon = (
   pokemons = filterByAttack(pokemons, attack);
   return pokemons.sort((a, b) => +a.id - +b.id);
 };
+
+export const defaultFilterPokemon = (pokemons: Pokemon[]): Pokemon[] => {
+  pokemons = filterBySearchTerm(pokemons, "");
+  pokemons = filterByWeight(pokemons, [0, 9999]);
+  pokemons = filterByHeight(pokemons, [0, 9999]);
+  pokemons = filterByAttack(pokemons, [0, 9999]);
+  return pokemons.sort((a, b) => +a.id - +b.id);
+};

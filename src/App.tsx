@@ -21,23 +21,30 @@ const App = (): JSX.Element => {
 
   const filterPokemonRef = React.useRef(handleFilteringPokemon);
 
-  useEffect(() => {
-    filterPokemonRef.current = handleFilteringPokemon;
-  });
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedFilterPokemon = useCallback(
     debounce((searchTerm: string) => filterPokemonRef.current(searchTerm), 500),
     []
   );
 
+  useEffect(() => {
+    filterPokemonRef.current = handleFilteringPokemon;
+  });
+
+  useEffect(() => {
+    debouncedFilterPokemon(searchTerm);
+
+    return () => {
+      debouncedFilterPokemon.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, searchTerm]);
+
   const handleSearchTermChange = (searchTerm: string) => {
-    console.log("searchTerm", searchTerm);
     setSearchTerm(searchTerm);
     debouncedFilterPokemon(searchTerm);
   };
 
-  console.log("rendered");
   if (!pokemons) return null;
 
   return (
